@@ -1,6 +1,11 @@
 // script.js
 //document.querySelector("[type='reset']").disabled = false;
 //fileElem.addEventListener("change", img, false);
+const canvas = document.getElementById("user-image");
+const ctx = canvas.getContext('2d');
+ctx.clearRect(0, 0, canvas.width, canvas.height);   // clear canvas
+ctx.fillStyle = 'black';
+ctx.fillRect(0, 0, canvas.width, canvas.height);    // fill canvas with black
 const img = new Image(); // used to load image from <input> and draw to canvas
 // Fires whenever the img object loads a new image (such as with img.src =)
 img.addEventListener('load', () => {
@@ -9,11 +14,7 @@ img.addEventListener('load', () => {
   img.src = URL.createObjectURL(file);
   //var image = document.getElementById("image-input");
   //image.src = this.src;   
-  const canvas = document.getElementById("user-image");
-  const ctx = canvas.getContext('2d');
-  ctx.clearRect(0, 0, canvas.width, canvas.height);   // clear canvas
-  ctx.fillStyle = 'black';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);    // fill canvas with black
+
   //document.getElementById("generate-meme").reset();   // clear the form
   // draw image with proper dimension
   let imgdata = getDimmensions(canvas.width, canvas.height, img.clientWidth, img.clientHeight);
