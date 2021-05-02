@@ -17,7 +17,8 @@ img.addEventListener('load', () => {
   // - Clear the form when a new image is selected
   // - If you draw the image to canvas here, it will update as soon as a new image is selected
 });
-img.src = document.getElementById("image-input").src
+img.src = document.getElementById("image-input").src;
+console.log(img.src);
 // change image
 const inputImg = document.getElementById("image-input");
 inputImg.addEventListener("change", handleFiles, false);
