@@ -9,16 +9,15 @@ img.addEventListener('load', () => {
   img.src = URL.createObjectURL(file);
   //var image = document.getElementById("image-input");
   //image.src = this.src;   
-  //const canvas = document.getElementById("user-image");
-  //const ctx = canvas.getContext('2d');
-  //ctx.clearRect(0, 0, canvas.width, canvas.height);   // clear canvas
-  //ctx.fillStyle = 'black';
-  //ctx.fillRect(0, 0, canvas.width, canvas.height);    // fill canvas with black
+  const canvas = document.getElementById("user-image");
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);   // clear canvas
+  ctx.fillStyle = 'black';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);    // fill canvas with black
   //document.getElementById("generate-meme").reset();   // clear the form
-  //document.getElementById("image-input").src = URL.createObjectURL(img);
   // draw image with proper dimension
-  //let imgdata = getDimmensions(canvas.width, canvas.height, img.clientWidth, img.clientHeight);
-  //ctx.drawImage(img, imgdata.startX, imgdata.startY, imgdata.width, imgdata.height);
+  let imgdata = getDimmensions(canvas.width, canvas.height, img.clientWidth, img.clientHeight);
+  ctx.drawImage(img, imgdata.startX, imgdata.startY, imgdata.width, imgdata.height);
 
   // Some helpful tips:
   // - Fill the whole Canvas with black first to add borders on non-square images, then draw on top
