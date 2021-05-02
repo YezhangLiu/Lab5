@@ -1,8 +1,8 @@
 // script.js
 
 const img = new Image(); // used to load image from <input> and draw to canvas
-const file = document.getElementById("image-input");
-img.src = URL.createObjectURL(img);
+const file = document.getElementById("image-input").files[0];
+img.src = URL.createObjectURL(file);
 // Fires whenever the img object loads a new image (such as with img.src =)
 img.addEventListener('load', () => {
   // TODO 
@@ -24,9 +24,10 @@ img.addEventListener('load', () => {
 });
 
 // reset button
-
-document.querySelector("[type='reset']").addEventListener('click', () => {
-  document.getElementById("generate-meme").reset();
+const reset = document.querySelector("[type='reset']");
+reset.disabled = false;
+reset.addEventListener('click', () => {
+  document.getElementById3("generate-meme").reset();
 });
 /**
  * Takes in the dimensions of the canvas and the new image, then calculates the new
