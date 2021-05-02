@@ -2,7 +2,7 @@
 
 const img = new Image(); // used to load image from <input> and draw to canvas
 const file = document.getElementById("image-input");
-img.src = URL.createObjectURL(file);
+img.src = URL.createObjectURL(img);
 // Fires whenever the img object loads a new image (such as with img.src =)
 img.addEventListener('load', () => {
   // TODO 
@@ -15,12 +15,18 @@ img.addEventListener('load', () => {
   // draw image with proper dimension
   //let imgdata = getDimmensions(canvas.width, canvas.height, img.clientWidth, img.clientHeight);
   //ctx.drawImage(img, imgdata.startX, imgdata.startY, imgdata.width, imgdata.height);
-  //document.querySelector("[type='reset']").disabled = false;
+  document.querySelector().disabled = false;
   
   // Some helpful tips:
   // - Fill the whole Canvas with black first to add borders on non-square images, then draw on top
   // - Clear the form when a new image is selected
   // - If you draw the image to canvas here, it will update as soon as a new image is selected
+});
+
+// reset button
+
+document.querySelector("[type='reset']").addEventListener('click', () => {
+  document.getElementById("generate-meme").reset();
 });
 /**
  * Takes in the dimensions of the canvas and the new image, then calculates the new
