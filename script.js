@@ -5,8 +5,8 @@ const img = new Image(); // used to load image from <input> and draw to canvas
 img.addEventListener('load', () => {
   // TODO
   img.src = URL.createObjectURL(img);
-  document.querySelector("[type='reset']").disabled = false;
-  //const canvas = document.getElementById("user-image");
+  //document.querySelector("[type='reset']").disabled = false;
+  const canvas = document.getElementById("user-image");
   //const ctx = canvas.getContext('2d');
   //ctx.clearRect(0, 0, canvas.width, canvas.height);   // clear canvas
   //ctx.fillStyle = 'black';
