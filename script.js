@@ -1,11 +1,11 @@
 // script.js
 const img = new Image(); // used to load image from <input> and draw to canvas
-// Fires whenever the img object loads a new image (such as with img.src =)
 const file = document.getElementById("image-input").files[0];
+const canvas = document.getElementById("user-image");
+const ctx = canvas.getContext('2d');
+// Fires whenever the img object loads a new image (such as with img.src =)
 img.addEventListener('load', () => {
   // TODO 
-  const canvas = document.getElementById("user-image");
-  const ctx = canvas.getContext('2d');
   ctx.clearRect(0, 0, canvas.width, canvas.height);   // clear canvas
   ctx.fillStyle = 'black';
   ctx.fillRect(0, 0, canvas.width, canvas.height);    // fill canvas with black
@@ -25,6 +25,13 @@ inputImg.addEventListener("change", handleFiles, false);
 function handleFiles() {
   img.src = document.getElementById("image-input").value;
 }
+// submit button
+const submit = document.querySelector("[type='submit']");
+submit.addEventListener('click', () => {
+  ctx.fillText(document.getElementById("text-top"));
+  ctx.fillText(document.getElementById("text-bottom"));
+  submit.disabled = true;
+});
 // reset button
 const reset = document.querySelector("[type='reset']");
 reset.disabled = false;
