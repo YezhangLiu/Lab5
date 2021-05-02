@@ -1,10 +1,10 @@
 // script.js
-
+document.querySelector("[type='reset']").disabled = false;
 const img = new Image(); // used to load image from <input> and draw to canvas
 // Fires whenever the img object loads a new image (such as with img.src =)
 img.addEventListener('load', () => {
   // TODO
-  document.querySelector("[type='reset']").disabled = false;
+  
   const canvas = document.getElementById("user-image");
   const ctx = canvas.getContext('2d');
   ctx.clearRect(0, 0, canvas.width, canvas.height);   // clear canvas
