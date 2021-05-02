@@ -4,17 +4,15 @@
 const canvas = document.getElementById("user-image");
 const ctx = canvas.getContext('2d');
 ctx.clearRect(0, 0, canvas.width, canvas.height);   // clear canvas
-ctx.fillStyle = 'black';
+ctx.fillStyle = 'purple';
 ctx.fillRect(0, 0, canvas.width, canvas.height);    // fill canvas with black
 const img = new Image(); // used to load image from <input> and draw to canvas
+const file = document.getElementById("image-input");
 // Fires whenever the img object loads a new image (such as with img.src =)
 img.addEventListener('load', () => {
   // TODO
-  const file = document.getElementById("image-input");
-  img.src = URL.createObjectURL(file);
   //var image = document.getElementById("image-input");
   //image.src = this.src;   
-
   //document.getElementById("generate-meme").reset();   // clear the form
   // draw image with proper dimension
   let imgdata = getDimmensions(canvas.width, canvas.height, img.clientWidth, img.clientHeight);
@@ -25,7 +23,7 @@ img.addEventListener('load', () => {
   // - Clear the form when a new image is selected
   // - If you draw the image to canvas here, it will update as soon as a new image is selected
 });
-
+img.src = URL.createObjectURL(file);
 /**
  * Takes in the dimensions of the canvas and the new image, then calculates the new
  * dimensions of the image so that it fits perfectly into the Canvas and maintains aspect ratio
