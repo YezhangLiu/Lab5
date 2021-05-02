@@ -1,8 +1,7 @@
 // script.js
 
 const img = new Image(); // used to load image from <input> and draw to canvas
-const file = document.getElementById("image-input").files[0];
-img.src = URL.createObjectURL(file);
+img.src = document.getElementById("image-input").value;
 // Fires whenever the img object loads a new image (such as with img.src =)
 img.addEventListener('load', () => {
   // TODO 
@@ -22,7 +21,12 @@ img.addEventListener('load', () => {
   // - Clear the form when a new image is selected
   // - If you draw the image to canvas here, it will update as soon as a new image is selected
 });
-
+// change image
+const inputImg = document.getElementById("image-input");
+inputImg.addEventListener("change", handleFiles, false);
+function handleFiles() {
+  img.src = document.getElementById("image-input").value;
+}
 // reset button
 const reset = document.querySelector("[type='reset']");
 reset.disabled = false;
