@@ -37,8 +37,8 @@ const submit = document.querySelector('button[type="submit"]');
 submit.addEventListener('click', () => {
   ctx.textAlign = "center";
   ctx.font = "30px Verdana";
-  ctx.fillText(document.getElementById("text-top").value, 50, 100);
-  ctx.fillText(document.getElementById("text-bottom").value, 50, 300);
+  ctx.fillText(document.getElementById("text-top").value, 200, 50);
+  ctx.fillText(document.getElementById("text-bottom").value, 200, 350);
   submit.disabled = true;
   reset.disabled = false;
   readtxt.disabled = false;
@@ -61,6 +61,8 @@ readtxt.addEventListener('click', () => {
   let bottom = new SpeechSynthesisUtterance(document.getElementById("text-bottom").value);
   speechSynthesis.speak(bottom);
 });
+
+// adjust volume 
 
 /**
  * Takes in the dimensions of the canvas and the new image, then calculates the new
