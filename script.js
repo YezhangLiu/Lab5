@@ -12,18 +12,21 @@ const ctx = canvas.getContext('2d');
 selection.disabled = false;
 
 // Fires whenever the img object loads a new image (such as with img.src =)
-image.addEventListener('change', function (event) {
+img.addEventListener('load', () => {
   
   ctx.clearRect(0, 0, canvas.width, canvas.height);   // clear canvas
   ctx.fillStyle = 'black';
   ctx.fillRect(0, 0, canvas.width, canvas.height);    // fill canvas with black
   //draw image with proper dimension
-  img.src = URL.createObjectURL(event.target.files[0]);
-  img.alt = event.target.files[0].name;   // change alt name
-  let imgdata = getDimmensions(canvas.width, canvas.height, img.clientWidth, img.clientHeight);
+  let imgdata = getDimmensions(canvas.width, canvas.height, img.width, img.height);
   ctx.drawImage(img, imgdata.startX, imgdata.startY, imgdata.width, imgdata.height);
 });
 
+// change image
+image.addEventListener('change', (event) => {
+  img.src = URL.createObjectURL(event.target.files[0]);
+  img.alt = event.target.files[0].name;   // change alt name
+});
 // submit button
 submit.addEventListener('click', () => {
   ctx.textAlign = "center";
