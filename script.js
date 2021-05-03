@@ -4,9 +4,9 @@ const file = document.getElementById("image-input");
 const canvas = document.getElementById("user-image");
 const ctx = canvas.getContext('2d');
 ctx.clearRect(0, 0, canvas.width, canvas.height);   // clear canvas
-ctx.fillStyle = 'white';
+ctx.fillStyle = 'purple';
 ctx.fillRect(0, 0, canvas.width, canvas.height);    // fill canvas with black
-
+/*
 // Fires whenever the img object loads a new image (such as with img.src =)
 img.addEventListener('load', (e) => {
   // TODO 
@@ -18,7 +18,7 @@ img.addEventListener('load', (e) => {
   //draw image with proper dimension
   img.src = URL.createObjectURL(e.target.files[0]);
   ctx.drawImage(img, 0, 0);
-  /*
+
   let imgdata = getDimmensions(canvas.width, canvas.height, img.clientWidth, img.clientHeight);
   ctx.drawImage(img, imgdata.startX, imgdata.startY, imgdata.width, imgdata.height);
   // Some helpful tips:
@@ -52,33 +52,6 @@ reset.addEventListener('click', () => {
   readtxt.disabled = true;
 });
 /*
-// voice list
-function populateVoiceList() {
-  if(typeof speechSynthesis === 'undefined') {
-    return;
-  }
-
-  var voices = speechSynthesis.getVoices();
-
-  for(var i = 0; i < voices.length; i++) {
-    var option = document.createElement('option');
-    option.textContent = voices[i].name + ' (' + voices[i].lang + ')';
-
-    if(voices[i].default) {
-      option.textContent += ' -- DEFAULT';
-    }
-
-    option.setAttribute('data-lang', voices[i].lang);
-    option.setAttribute('data-name', voices[i].name);
-    document.getElementById("voiceSelect").appendChild(option);
-  }
-}
-
-populateVoiceList();
-if (typeof speechSynthesis !== 'undefined' && speechSynthesis.onvoiceschanged !== undefined) {
-  speechSynthesis.onvoiceschanged = populateVoiceList;
-}
-*/
 // read text button
 const readtxt = document.querySelector("[type='button']");
 readtxt.addEventListener('click', () => {
@@ -87,23 +60,7 @@ readtxt.addEventListener('click', () => {
   let bottom = new SpeechSynthesisUtterance(document.getElementById("text-bottom").value);
   speechSynthesis.speak(bottom);
 });
-/*
-inputForm.onsubmit = function(event) {
-  event.preventDefault();
-
-  var utterThis = new SpeechSynthesisUtterance(inputTxt.value);
-  var selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');
-  for(var i = 0; i < voices.length ; i++) {
-    if(voices[i].name === selectedOption) {
-      utterThis.voice = voices[i];
-    }
-  }
-  utterThis.pitch = pitch.value;
-  utterThis.rate = rate.value;
-  synth.speak(utterThis);
-
-  inputTxt.blur();
-}*/
+*/
 /**
  * Takes in the dimensions of the canvas and the new image, then calculates the new
  * dimensions of the image so that it fits perfectly into the Canvas and maintains aspect ratio
