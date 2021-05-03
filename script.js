@@ -52,7 +52,6 @@ readtxt.addEventListener('click', () => {
 
 // adjust icon and volumn
 range.addEventListener('change', () => {
-  alert("range");
   top.volume = range.value/100;
   bottom.volume = range.value/100;
   var icon = document.querySelector('img[alt="Volume Level 3"]');
