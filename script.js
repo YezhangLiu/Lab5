@@ -8,7 +8,8 @@ ctx.fillStyle = 'black';
 ctx.fillRect(0, 0, canvas.width, canvas.height);    // fill canvas with black
 
 // Fires whenever the img object loads a new image (such as with img.src =)
-img.addEventListener('load', (e) => {
+
+img.addEventListener('change', function(e) {
   // TODO 
   alert("hello");
   //ctx.clearRect(0, 0, canvas.width, canvas.height);   // clear canvas
@@ -25,11 +26,6 @@ img.addEventListener('load', (e) => {
   // - Fill the whole Canvas with black first to add borders on non-square images, then draw on top
   // - Clear the form when a new image is selected
   // - If you draw the image to canvas here, it will update as soon as a new image is selected
-});
-
-// change image
-img.addEventListener('change', (e) => {
-  img.src = URL.createObjectURL(e.target.files[0]);
 });
 
 // submit button
