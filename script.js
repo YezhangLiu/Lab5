@@ -21,7 +21,7 @@ img.addEventListener('change', function(e) {
   //document.getElementById("generate-meme").reset();   // clear the form
   //draw image with proper dimension
   img.src = URL.createObjectURL(e.target.files[0]);
-  ctx.drawImage(img, 0, 0);
+  ctx.drawImage(img, 200, 200);
 
   //let imgdata = getDimmensions(canvas.width, canvas.height, img.clientWidth, img.clientHeight);
   //ctx.drawImage(img, imgdata.startX, imgdata.startY, imgdata.width, imgdata.height);
