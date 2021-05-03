@@ -11,22 +11,16 @@ const ctx = canvas.getContext('2d');
 selection.disabled = false;
 
 // Fires whenever the img object loads a new image (such as with img.src =)
-img.addEventListener('load', function (event) {
+img.addEventListener('change', function (event) {
   alert(event.target.files[0].name);
   ctx.clearRect(0, 0, canvas.width, canvas.height);   // clear canvas
   ctx.fillStyle = 'black';
   ctx.fillRect(0, 0, canvas.width, canvas.height);    // fill canvas with black
-  document.getElementById("generate-meme").reset();   // clear the form
   //draw image with proper dimension
   img.src = URL.createObjectURL(event.target.files[0]);
+  img.alt = event.target.files[0].name;   // change alt name
   let imgdata = getDimmensions(canvas.width, canvas.height, img.clientWidth, img.clientHeight);
   ctx.drawImage(img, imgdata.startX, imgdata.startY, imgdata.width, imgdata.height);
-});
-
-// change img
-img.addEventListener('change', function (event) { 
-  img.src = URL.createObjectURL(event.target.files[0]);
-  img.alt = event.target.files[0].name;   // change alt name
 });
 
 // submit button
