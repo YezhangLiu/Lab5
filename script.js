@@ -6,17 +6,19 @@ const ctx = canvas.getContext('2d');
 ctx.clearRect(0, 0, canvas.width, canvas.height);   // clear canvas
 ctx.fillStyle = 'white';
 ctx.fillRect(0, 0, canvas.width, canvas.height);    // fill canvas with black
-/*
+
 // Fires whenever the img object loads a new image (such as with img.src =)
 img.addEventListener('load', (e) => {
   // TODO 
   alert("hello");
-  ctx.clearRect(0, 0, canvas.width, canvas.height);   // clear canvas
-  ctx.fillStyle = 'black';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);    // fill canvas with black
+  //ctx.clearRect(0, 0, canvas.width, canvas.height);   // clear canvas
+  //ctx.fillStyle = 'black';
+  //ctx.fillRect(0, 0, canvas.width, canvas.height);    // fill canvas with black
   document.getElementById("generate-meme").reset();   // clear the form
   //draw image with proper dimension
   img.src = URL.createObjectURL(e.target.files[0]);
+  ctx.drawImage(img, 0, 0);
+  /*
   let imgdata = getDimmensions(canvas.width, canvas.height, img.clientWidth, img.clientHeight);
   ctx.drawImage(img, imgdata.startX, imgdata.startY, imgdata.width, imgdata.height);
   // Some helpful tips:
