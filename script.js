@@ -81,28 +81,43 @@ if (speechSynthesis.onvoiceschanged !== undefined) {
 inputForm.onsubmit = function(event) {
   event.preventDefault();
 
-  var utterThis = new SpeechSynthesisUtterance(inputTxt.value);
+  var top = new SpeechSynthesisUtterance(document.getElementById("text-top").value);
+  var bottom = new SpeechSynthesisUtterance(document.getElementById("text-bottom").value);
   var selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');
   for(var i = 0; i < voices.length ; i++) {
     if(voices[i].name === selectedOption) {
-      utterThis.voice = voices[i];
+      top.voice = voices[i];
+      bottom.voice = voices[i];
     }
   }
-  utterThis.pitch = pitch.value;
-  utterThis.rate = rate.value;
-  synth.speak(utterThis);
+  // adjust volumn 
+  const readtxt = document.querySelector("[type='button']");
+  var loud = document.querySelector('input[type="range"]').value;
+  readtxt.addEventListener('click', () => {
+    top.volume = loud;
+    bottom.volume = loud;
+    synth.speak(top);
+    synth.speak(bottom);
+  })
+  // adjust icon
+  var icon = document.querySelector('img[alt="Volume Level 3"]');
+  if(loud == 0) {
+    icon.src = "icons/volume-level-0.svg";
+  }
 
-  inputTxt.blur();
+  else if(loud >= 1 && loud <= 33){
+    icon.src = "icons/volume-level-1.svg";
+  }
+
+  else if(loud >= 34 && loud <= 66){
+    icon.src = "icons/volume-level-2.svg";
+  }
+
+  else if(loud >= 67 && loud <= 100){
+    icon.src = "icons/volume-level-3.svg";
+  }
 }
-const readtxt = document.querySelector("[type='button']");
-readtxt.addEventListener('click', () => {
-  let top = new SpeechSynthesisUtterance(document.getElementById("text-top").value);
-  speechSynthesis.speak(top);
-  let bottom = new SpeechSynthesisUtterance(document.getElementById("text-bottom").value);
-  speechSynthesis.speak(bottom);
-});
 
-// adjust volume 
 
 /**
  * Takes in the dimensions of the canvas and the new image, then calculates the new
