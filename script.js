@@ -1,6 +1,6 @@
 // script.js
 const img = new Image();
-//const img = document.getElementById("image-input");  // image file
+const image = document.getElementById("image-input");  // image file
 const readtxt = document.querySelector("[type='button']");  // readtext button
 const reset = document.querySelector('button[type="reset"]'); // clear button
 const submit = document.querySelector('button[type="submit"]'); // submit button
@@ -14,7 +14,7 @@ const ctx = canvas.getContext('2d');
 selection.disabled = false;
 
 // Fires whenever the img object loads a new image (such as with img.src =)
-img.addEventListener('change', function (event) {
+image.addEventListener('change', function (event) {
   alert(event.target.files[0].name);
   ctx.clearRect(0, 0, canvas.width, canvas.height);   // clear canvas
   ctx.fillStyle = 'black';
@@ -46,31 +46,6 @@ reset.addEventListener('click', () => {
 });
 
 // voice selection
-function populateVoiceList() {
-  if(typeof speechSynthesis === 'undefined') {
-    return;
-  }
-
-  var voices = speechSynthesis.getVoices();
-
-  for(var i = 0; i < voices.length; i++) {
-    var option = document.createElement('option');
-    option.textContent = voices[i].name + ' (' + voices[i].lang + ')';
-
-    if(voices[i].default) {
-      option.textContent += ' -- DEFAULT';
-    }
-
-    option.setAttribute('data-lang', voices[i].lang);
-    option.setAttribute('data-name', voices[i].name);
-    selection.appendChild(option);
-  }
-}
-
-populateVoiceList();
-if (typeof speechSynthesis !== 'undefined' && speechSynthesis.onvoiceschanged !== undefined) {
-  speechSynthesis.onvoiceschanged = populateVoiceList;
-}
 readtxt.addEventListener('click', () => {
   toppo.volume = range.value/100;
   bottom.volume = range.value/100;
