@@ -15,7 +15,7 @@ ctx.clearRect(0, 0, canvas.width, canvas.height);   // clear canvas
 selection.disabled = false;
 // Fires whenever the img object loads a new image (such as with img.src =)
 
-img.addEventListener('click', () => {
+img.addEventListener('load', () => {
   // TODO 
   alert("hello");
   //ctx.clearRect(0, 0, canvas.width, canvas.height);   // clear canvas
