@@ -28,6 +28,7 @@ function handleFiles() {
 // submit button
 const submit = document.querySelector("[type='submit']");
 submit.addEventListener('click', () => {
+  ctx.textAlign = "center";
   ctx.fillText(document.getElementById("text-top"));
   ctx.fillText(document.getElementById("text-bottom"));
   submit.disabled = true;
