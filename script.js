@@ -4,7 +4,7 @@ const file = document.getElementById("image-input");
 const canvas = document.getElementById("user-image");
 const ctx = canvas.getContext('2d');
 ctx.clearRect(0, 0, canvas.width, canvas.height);   // clear canvas
-ctx.fillStyle = 'black';
+ctx.fillStyle = 'purple';
 ctx.fillRect(0, 0, canvas.width, canvas.height);    // fill canvas with black
 /*
 // Fires whenever the img object loads a new image (such as with img.src =)
@@ -35,6 +35,7 @@ img.addEventListener('change', (e) => {
 // submit button
 const submit = document.querySelector('button[type="submit"]');
 submit.addEventListener('click', () => {
+  alert("haha");
   ctx.textAlign = "center";
   ctx.fillText(document.getElementById("text-top").placeholder);
   ctx.fillText(document.getElementById("text-bottom").placeholder);
