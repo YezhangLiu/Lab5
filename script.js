@@ -24,16 +24,18 @@ img.addEventListener('load', (e) => {
 img.addEventListener('change', (e) => {
   img.src = URL.createObjectURL(e.target.files[0]);
 });
+
 // submit button
 const submit = document.querySelector("[type='submit']");
 submit.addEventListener('click', () => {
   ctx.textAlign = "center";
-  ctx.fillText(document.getElementById("text-top"));
-  ctx.fillText(document.getElementById("text-bottom"));
+  ctx.fillText(document.getElementById("text-top").value);
+  ctx.fillText(document.getElementById("text-bottom").value);
   submit.disabled = true;
   reset.disabled = false;
   readtxt.disabled = false;
 });
+
 // reset button
 const reset = document.querySelector("[type='reset']");
 reset.addEventListener('click', () => {
@@ -42,11 +44,14 @@ reset.addEventListener('click', () => {
   reset.disabled = true;
   readtxt.disabled = true;
 });
+
 // read text button
 const readtxt = document.querySelector("[type='button']");
-
 readtxt.addEventListener('click', () => {
-  document.getElementById3("generate-meme").reset();
+  let top = new SpeechSynthesisUtterance(document.getElementById("text-top").value);
+  speechSynthesis.speak(top);
+  let bottom = new SpeechSynthesisUtterance(document.getElementById("text-bottom").value);
+  speechSynthesis.speak(bottom);
 });
 /**
  * Takes in the dimensions of the canvas and the new image, then calculates the new
