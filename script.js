@@ -1,6 +1,5 @@
 // script.js
-const img = new Image(); // used to load image from <input> and draw to canvas
-const file = document.getElementById("image-input");  // image file
+const img = document.getElementById("image-input");  // image file
 const readtxt = document.querySelector("[type='button']");  // readtext button
 const reset = document.querySelector('button[type="reset"]'); // clear button
 const submit = document.querySelector('button[type="submit"]'); // submit button
@@ -15,7 +14,13 @@ ctx.clearRect(0, 0, canvas.width, canvas.height);   // clear canvas
 selection.disabled = false;
 // Fires whenever the img object loads a new image (such as with img.src =)
 
-img.addEventListener('load', () => {
+img.addEventListener('change',
+    function (event) {
+        alert(event.target.files[0].name);
+    }
+);
+
+img.addEventListener('load', (e) => {
   // TODO 
   alert("hello");
   //ctx.clearRect(0, 0, canvas.width, canvas.height);   // clear canvas
@@ -23,7 +28,6 @@ img.addEventListener('load', () => {
   //ctx.fillRect(0, 0, canvas.width, canvas.height);    // fill canvas with black
   //document.getElementById("generate-meme").reset();   // clear the form
   //draw image with proper dimension
-  img.src = URL.createObjectURL(e.target.files[0]);
   ctx.drawImage(img, 200, 200);
 
   //let imgdata = getDimmensions(canvas.width, canvas.height, img.clientWidth, img.clientHeight);
@@ -34,6 +38,7 @@ img.addEventListener('load', () => {
   // - If you draw the image to canvas here, it will update as soon as a new image is selected
 });
 
+img.src = URL.createObjectURL(e.target.files[0]);
 // submit button
 submit.addEventListener('click', () => {
   ctx.textAlign = "center";
@@ -64,6 +69,7 @@ readtxt.addEventListener('click', () => {
 });
   // adjust icon and volumn
 range.addEventListener('change', () => {
+  alert("range");
   top.volume = range.value;
   bottom.volume = range.value;
   var icon = document.querySelector('img[alt="Volume Level 3"]');
