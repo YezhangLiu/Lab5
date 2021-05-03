@@ -6,7 +6,7 @@ const ctx = canvas.getContext('2d');
 ctx.clearRect(0, 0, canvas.width, canvas.height);   // clear canvas
 ctx.fillStyle = 'black';
 ctx.fillRect(0, 0, canvas.width, canvas.height);    // fill canvas with black
-/*
+
 // Fires whenever the img object loads a new image (such as with img.src =)
 img.addEventListener('load', (e) => {
   // TODO 
@@ -14,7 +14,7 @@ img.addEventListener('load', (e) => {
   //ctx.clearRect(0, 0, canvas.width, canvas.height);   // clear canvas
   //ctx.fillStyle = 'black';
   //ctx.fillRect(0, 0, canvas.width, canvas.height);    // fill canvas with black
-  document.getElementById("generate-meme").reset();   // clear the form
+  //document.getElementById("generate-meme").reset();   // clear the form
   //draw image with proper dimension
   img.src = URL.createObjectURL(e.target.files[0]);
   ctx.drawImage(img, 0, 0);
@@ -31,7 +31,7 @@ img.addEventListener('load', (e) => {
 img.addEventListener('change', (e) => {
   img.src = URL.createObjectURL(e.target.files[0]);
 });
-*/
+
 // submit button
 const submit = document.querySelector('button[type="submit"]');
 submit.addEventListener('click', () => {
@@ -53,7 +53,47 @@ reset.addEventListener('click', () => {
   readtxt.disabled = true;
 });
 
-// read text button
+// voice selection
+var voices = [];
+
+function populateVoiceList() {
+  voices = synth.getVoices();
+
+  for(var i = 0; i < voices.length ; i++) {
+    var option = document.createElement('option');
+    option.textContent = voices[i].name + ' (' + voices[i].lang + ')';
+
+    if(voices[i].default) {
+      option.textContent += ' -- DEFAULT';
+    }
+
+    option.setAttribute('data-lang', voices[i].lang);
+    option.setAttribute('data-name', voices[i].name);
+    voiceSelect.appendChild(option);
+  }
+}
+
+populateVoiceList();
+if (speechSynthesis.onvoiceschanged !== undefined) {
+  speechSynthesis.onvoiceschanged = populateVoiceList;
+}
+
+inputForm.onsubmit = function(event) {
+  event.preventDefault();
+
+  var utterThis = new SpeechSynthesisUtterance(inputTxt.value);
+  var selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');
+  for(var i = 0; i < voices.length ; i++) {
+    if(voices[i].name === selectedOption) {
+      utterThis.voice = voices[i];
+    }
+  }
+  utterThis.pitch = pitch.value;
+  utterThis.rate = rate.value;
+  synth.speak(utterThis);
+
+  inputTxt.blur();
+}
 const readtxt = document.querySelector("[type='button']");
 readtxt.addEventListener('click', () => {
   let top = new SpeechSynthesisUtterance(document.getElementById("text-top").value);
