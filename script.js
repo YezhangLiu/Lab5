@@ -6,7 +6,7 @@ const reset = document.querySelector('button[type="reset"]'); // clear button
 const submit = document.querySelector('button[type="submit"]'); // submit button
 const canvas = document.getElementById("user-image"); // create canvas
 const selection = document.getElementById("voice-selection");
-var range = document.querySelector('input[type="range"]').value;  // volumn
+const range = document.querySelector('input[type="range"]');  // volumn
 
 const ctx = canvas.getContext('2d');
 ctx.clearRect(0, 0, canvas.width, canvas.height);   // clear canvas
@@ -57,32 +57,32 @@ reset.addEventListener('click', () => {
 readtxt.addEventListener('click', () => {
   var top = new SpeechSynthesisUtterance(document.getElementById("text-top").value);
   var bottom = new SpeechSynthesisUtterance(document.getElementById("text-bottom").value);
-
-  // adjust icon and volumn
-  range.addEventListener('change', () => {
-    top.volume = range;
-    bottom.volume = range;
-    var icon = document.querySelector('img[alt="Volume Level 3"]');
-    if(loud == 0) {
-      icon.src = "icons/volume-level-0.svg";
-    }
-
-    else if(loud >= 1 && loud <= 33){
-      icon.src = "icons/volume-level-1.svg";
-    }
-
-    else if(loud >= 34 && loud <= 66){
-      icon.src = "icons/volume-level-2.svg";
-    }
-
-    else if(loud >= 67 && loud <= 100){
-      icon.src = "icons/volume-level-3.svg";
-    }
-  })
-
+  top.volume = range.value;
+  bottom.volume = range.value;
   speechSynthesis.speak(top);
   speechSynthesis.speak(bottom);
-})
+});
+  // adjust icon and volumn
+range.addEventListener('change', () => {
+  top.volume = range.value;
+  bottom.volume = range.value;
+  var icon = document.querySelector('img[alt="Volume Level 3"]');
+  if(loud == 0) {
+    icon.src = "icons/volume-level-0.svg";
+  }
+
+  else if(loud >= 1 && loud <= 33){
+    icon.src = "icons/volume-level-1.svg";
+  }
+
+  else if(loud >= 34 && loud <= 66){
+    icon.src = "icons/volume-level-2.svg";
+  }
+
+  else if(loud >= 67 && loud <= 100){
+    icon.src = "icons/volume-level-3.svg";
+  }
+});
 
 /**
  * Takes in the dimensions of the canvas and the new image, then calculates the new
