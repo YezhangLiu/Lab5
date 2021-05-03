@@ -1,5 +1,6 @@
 // script.js
-const img = document.getElementById("image-input");  // image file
+const img = new Image();
+//const img = document.getElementById("image-input");  // image file
 const readtxt = document.querySelector("[type='button']");  // readtext button
 const reset = document.querySelector('button[type="reset"]'); // clear button
 const submit = document.querySelector('button[type="submit"]'); // submit button
