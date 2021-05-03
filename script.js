@@ -46,8 +46,6 @@ reset.addEventListener('click', () => {
 readtxt.addEventListener('click', () => {
   var top = new SpeechSynthesisUtterance(document.getElementById("text-top").value);
   var bottom = new SpeechSynthesisUtterance(document.getElementById("text-bottom").value);
-  top.volume = range.value;
-  bottom.volume = range.value;
   speechSynthesis.speak(top);
   speechSynthesis.speak(bottom);
 });
