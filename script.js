@@ -4,7 +4,7 @@ const file = document.getElementById("image-input");
 const canvas = document.getElementById("user-image");
 const ctx = canvas.getContext('2d');
 ctx.clearRect(0, 0, canvas.width, canvas.height);   // clear canvas
-ctx.fillStyle = 'purple';
+ctx.fillStyle = 'black';
 ctx.fillRect(0, 0, canvas.width, canvas.height);    // fill canvas with black
 /*
 // Fires whenever the img object loads a new image (such as with img.src =)
@@ -19,8 +19,8 @@ img.addEventListener('load', (e) => {
   img.src = URL.createObjectURL(e.target.files[0]);
   ctx.drawImage(img, 0, 0);
 
-  let imgdata = getDimmensions(canvas.width, canvas.height, img.clientWidth, img.clientHeight);
-  ctx.drawImage(img, imgdata.startX, imgdata.startY, imgdata.width, imgdata.height);
+  //let imgdata = getDimmensions(canvas.width, canvas.height, img.clientWidth, img.clientHeight);
+  //ctx.drawImage(img, imgdata.startX, imgdata.startY, imgdata.width, imgdata.height);
   // Some helpful tips:
   // - Fill the whole Canvas with black first to add borders on non-square images, then draw on top
   // - Clear the form when a new image is selected
