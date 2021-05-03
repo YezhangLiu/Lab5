@@ -27,7 +27,7 @@ img.addEventListener('change', (e) => {
 });
 
 // submit button
-const submit = document.querySelector("[type='submit']");
+const submit = document.querySelector('button[type="submit"]');
 submit.addEventListener('click', () => {
   ctx.textAlign = "center";
   ctx.fillText(document.getElementById("text-top").value);
@@ -38,14 +38,41 @@ submit.addEventListener('click', () => {
 });
 
 // reset button
-const reset = document.querySelector("[type='reset']");
+const reset = document.querySelector('button[type="reset"]');
 reset.addEventListener('click', () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height); 
   submit.disabled = false;
   reset.disabled = true;
   readtxt.disabled = true;
 });
+/*
+// voice list
+function populateVoiceList() {
+  if(typeof speechSynthesis === 'undefined') {
+    return;
+  }
 
+  var voices = speechSynthesis.getVoices();
+
+  for(var i = 0; i < voices.length; i++) {
+    var option = document.createElement('option');
+    option.textContent = voices[i].name + ' (' + voices[i].lang + ')';
+
+    if(voices[i].default) {
+      option.textContent += ' -- DEFAULT';
+    }
+
+    option.setAttribute('data-lang', voices[i].lang);
+    option.setAttribute('data-name', voices[i].name);
+    document.getElementById("voiceSelect").appendChild(option);
+  }
+}
+
+populateVoiceList();
+if (typeof speechSynthesis !== 'undefined' && speechSynthesis.onvoiceschanged !== undefined) {
+  speechSynthesis.onvoiceschanged = populateVoiceList;
+}
+*/
 // read text button
 const readtxt = document.querySelector("[type='button']");
 readtxt.addEventListener('click', () => {
@@ -54,6 +81,23 @@ readtxt.addEventListener('click', () => {
   let bottom = new SpeechSynthesisUtterance(document.getElementById("text-bottom").value);
   speechSynthesis.speak(bottom);
 });
+/*
+inputForm.onsubmit = function(event) {
+  event.preventDefault();
+
+  var utterThis = new SpeechSynthesisUtterance(inputTxt.value);
+  var selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');
+  for(var i = 0; i < voices.length ; i++) {
+    if(voices[i].name === selectedOption) {
+      utterThis.voice = voices[i];
+    }
+  }
+  utterThis.pitch = pitch.value;
+  utterThis.rate = rate.value;
+  synth.speak(utterThis);
+
+  inputTxt.blur();
+}*/
 /**
  * Takes in the dimensions of the canvas and the new image, then calculates the new
  * dimensions of the image so that it fits perfectly into the Canvas and maintains aspect ratio
