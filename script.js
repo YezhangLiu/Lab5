@@ -37,8 +37,8 @@ const submit = document.querySelector('button[type="submit"]');
 submit.addEventListener('click', () => {
   alert("haha");
   ctx.textAlign = "center";
-  ctx.fillText(document.getElementById("text-top").placeholder, 50, 100);
-  ctx.fillText(document.getElementById("text-bottom").placeholder, 50, 300);
+  ctx.fillText(document.getElementById("text-top").value, 50, 100);
+  ctx.fillText(document.getElementById("text-bottom").value, 50, 300);
   submit.disabled = true;
   reset.disabled = false;
   readtxt.disabled = false;
@@ -52,7 +52,7 @@ reset.addEventListener('click', () => {
   reset.disabled = true;
   readtxt.disabled = true;
 });
-/*
+
 // read text button
 const readtxt = document.querySelector("[type='button']");
 readtxt.addEventListener('click', () => {
@@ -61,7 +61,7 @@ readtxt.addEventListener('click', () => {
   let bottom = new SpeechSynthesisUtterance(document.getElementById("text-bottom").value);
   speechSynthesis.speak(bottom);
 });
-*/
+
 /**
  * Takes in the dimensions of the canvas and the new image, then calculates the new
  * dimensions of the image so that it fits perfectly into the Canvas and maintains aspect ratio
