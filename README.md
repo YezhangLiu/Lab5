@@ -4,9 +4,13 @@
 - Yezhang Liu
 
 ## Part 1:
+[link to my page](https://yezhangliu.github.io/Lab5/)
 
-LINK TO YOUR PUBLISHED SITE
+https://yezhangliu.github.io/Lab5/
 
 ## Part 2:
+[link to part 2 reg](https://github.com/YezhangLiu/github-actions-for-ci)
 
-LINK TO YOUR PART 2 REPOSITORY
+https://github.com/YezhangLiu/github-actions-for-ci
+
+
