@@ -7,8 +7,6 @@ const submit = document.querySelector('button[type="submit"]'); // submit button
 const canvas = document.getElementById("user-image"); // create canvas
 const selection = document.getElementById("voice-selection");
 const range = document.querySelector('input[type="range"]');  // volumn
-let toppo = new SpeechSynthesisUtterance(document.getElementById("text-top").value);  
-let bottom = new SpeechSynthesisUtterance(document.getElementById("text-bottom").value);
 
 const ctx = canvas.getContext('2d');
 selection.disabled = false;
@@ -47,16 +45,16 @@ reset.addEventListener('click', () => {
 
 // voice selection
 readtxt.addEventListener('click', () => {
+  var toppo = new SpeechSynthesisUtterance(document.getElementById("text-top").value);  
+  var bottom = new SpeechSynthesisUtterance(document.getElementById("text-bottom").value);
   toppo.volume = range.value/100;
   bottom.volume = range.value/100;
   speechSynthesis.speak(toppo);
   speechSynthesis.speak(bottom);
 });
 
-// adjust icon and volumn
+// adjust icon 
 range.addEventListener('change', () => {
-  toppo.volume = range.value/100;
-  bottom.volume = range.value/100;
   var icon = document.querySelector('img[alt="Volume Level 3"]');
   if(range == 0) {
     icon.src = "icons/volume-level-0.svg";
