@@ -12,6 +12,7 @@ selection.disabled = false;
 
 // Fires whenever the img object loads a new image (such as with img.src =)
 img.addEventListener('load', function (event) {
+  alert(event.target.files[0].name);
   ctx.clearRect(0, 0, canvas.width, canvas.height);   // clear canvas
   ctx.fillStyle = 'black';
   ctx.fillRect(0, 0, canvas.width, canvas.height);    // fill canvas with black
@@ -56,11 +57,12 @@ readtxt.addEventListener('click', () => {
   speechSynthesis.speak(top);
   speechSynthesis.speak(bottom);
 });
-  // adjust icon and volumn
+
+// adjust icon and volumn
 range.addEventListener('change', () => {
   alert("range");
-  top.volume = range.value;
-  bottom.volume = range.value;
+  top.volume = range.value/100;
+  bottom.volume = range.value/100;
   var icon = document.querySelector('img[alt="Volume Level 3"]');
   if(loud == 0) {
     icon.src = "icons/volume-level-0.svg";
