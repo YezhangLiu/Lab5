@@ -6,6 +6,7 @@ const ctx = canvas.getContext('2d');
 // Fires whenever the img object loads a new image (such as with img.src =)
 img.addEventListener('load', (e) => {
   // TODO 
+  alert("hello");
   ctx.clearRect(0, 0, canvas.width, canvas.height);   // clear canvas
   ctx.fillStyle = 'black';
   ctx.fillRect(0, 0, canvas.width, canvas.height);    // fill canvas with black
