@@ -15,13 +15,14 @@ selection.disabled = false;
 image.addEventListener('change', function (event) {
   
   ctx.clearRect(0, 0, canvas.width, canvas.height);   // clear canvas
-  ctx.fillStyle = 'black';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);    // fill canvas with black
+  //ctx.fillStyle = 'black';
+  //ctx.fillRect(0, 0, canvas.width, canvas.height);    // fill canvas with black
   //draw image with proper dimension
-  img.src = URL.createObjectURL(event.target.files[0]);
+  image.src = URL.createObjectURL(event.target.files[0]);
+  img.src = image.src;
   img.alt = event.target.files[0].name;   // change alt name
-  alert(img.alt);
   ctx.drawImage(img, 0, 0);
+  ctx.drawImage(image, 0, 0);
   //let imgdata = getDimmensions(canvas.width, canvas.height, img.clientWidth, img.clientHeight);
   //ctx.drawImage(img, imgdata.startX, imgdata.startY, imgdata.width, imgdata.height);
 });
