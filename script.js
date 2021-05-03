@@ -3,6 +3,10 @@ const img = new Image(); // used to load image from <input> and draw to canvas
 const file = document.getElementById("image-input");
 const canvas = document.getElementById("user-image");
 const ctx = canvas.getContext('2d');
+ctx.clearRect(0, 0, canvas.width, canvas.height);   // clear canvas
+ctx.fillStyle = 'white';
+ctx.fillRect(0, 0, canvas.width, canvas.height);    // fill canvas with black
+/*
 // Fires whenever the img object loads a new image (such as with img.src =)
 img.addEventListener('load', (e) => {
   // TODO 
@@ -25,13 +29,13 @@ img.addEventListener('load', (e) => {
 img.addEventListener('change', (e) => {
   img.src = URL.createObjectURL(e.target.files[0]);
 });
-
+*/
 // submit button
 const submit = document.querySelector('button[type="submit"]');
 submit.addEventListener('click', () => {
   ctx.textAlign = "center";
-  ctx.fillText(document.getElementById("text-top").value);
-  ctx.fillText(document.getElementById("text-bottom").value);
+  ctx.fillText(document.getElementById("text-top").placeholder);
+  ctx.fillText(document.getElementById("text-bottom").placeholder);
   submit.disabled = true;
   reset.disabled = false;
   readtxt.disabled = false;
