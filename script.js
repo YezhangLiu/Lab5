@@ -58,19 +58,19 @@ range.addEventListener('change', () => {
   top.volume = range.value/100;
   bottom.volume = range.value/100;
   var icon = document.querySelector('img[alt="Volume Level 3"]');
-  if(loud == 0) {
+  if(range == 0) {
     icon.src = "icons/volume-level-0.svg";
   }
 
-  else if(loud >= 1 && loud <= 33){
+  else if(range >= 1 && range <= 33){
     icon.src = "icons/volume-level-1.svg";
   }
 
-  else if(loud >= 34 && loud <= 66){
+  else if(range >= 34 && range <= 66){
     icon.src = "icons/volume-level-2.svg";
   }
 
-  else if(loud >= 67 && loud <= 100){
+  else if(range >= 67 && range <= 100){
     icon.src = "icons/volume-level-3.svg";
   }
 });
