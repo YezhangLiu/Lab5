@@ -37,8 +37,8 @@ const submit = document.querySelector('button[type="submit"]');
 submit.addEventListener('click', () => {
   alert("haha");
   ctx.textAlign = "center";
-  ctx.fillText(document.getElementById("text-top").placeholder);
-  ctx.fillText(document.getElementById("text-bottom").placeholder);
+  ctx.fillText(document.getElementById("text-top").placeholder, 50, 100);
+  ctx.fillText(document.getElementById("text-bottom").placeholder, 50, 300);
   submit.disabled = true;
   reset.disabled = false;
   readtxt.disabled = false;
