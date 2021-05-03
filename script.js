@@ -1,7 +1,10 @@
 // script.js
 const img = new Image(); // used to load image from <input> and draw to canvas
-const file = document.getElementById("image-input");
-const canvas = document.getElementById("user-image");
+const file = document.getElementById("image-input");  // image file
+const readtxt = document.querySelector("[type='button']");  // readtext button
+const reset = document.querySelector('button[type="reset"]'); // clear button
+const submit = document.querySelector('button[type="submit"]'); // submit button
+const canvas = document.getElementById("user-image"); // create canvas
 const ctx = canvas.getContext('2d');
 ctx.clearRect(0, 0, canvas.width, canvas.height);   // clear canvas
 ctx.fillStyle = 'black';
@@ -29,7 +32,6 @@ img.addEventListener('change', function(e) {
 });
 
 // submit button
-const submit = document.querySelector('button[type="submit"]');
 submit.addEventListener('click', () => {
   ctx.textAlign = "center";
   ctx.font = "30px Verdana";
@@ -41,7 +43,6 @@ submit.addEventListener('click', () => {
 });
 
 // reset button
-const reset = document.querySelector('button[type="reset"]');
 reset.addEventListener('click', () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height); 
   submit.disabled = false;
@@ -50,12 +51,14 @@ reset.addEventListener('click', () => {
 });
 
 // voice selection
-var voices = [];
-
 function populateVoiceList() {
-  voices = synth.getVoices();
+  if(typeof speechSynthesis === 'undefined') {
+    return;
+  }
 
-  for(var i = 0; i < voices.length ; i++) {
+  var voices = speechSynthesis.getVoices();
+
+  for(var i = 0; i < voices.length; i++) {
     var option = document.createElement('option');
     option.textContent = voices[i].name + ' (' + voices[i].lang + ')';
 
@@ -65,21 +68,22 @@ function populateVoiceList() {
 
     option.setAttribute('data-lang', voices[i].lang);
     option.setAttribute('data-name', voices[i].name);
-    voiceSelect.appendChild(option);
+    document.getElementById("voice_selection").appendChild(option);
   }
 }
 
 populateVoiceList();
-if (speechSynthesis.onvoiceschanged !== undefined) {
+if (typeof speechSynthesis !== 'undefined' && speechSynthesis.onvoiceschanged !== undefined) {
   speechSynthesis.onvoiceschanged = populateVoiceList;
 }
 
+// adjust voice and volumn
 inputForm.onsubmit = function(event) {
   event.preventDefault();
 
   var top = new SpeechSynthesisUtterance(document.getElementById("text-top").value);
   var bottom = new SpeechSynthesisUtterance(document.getElementById("text-bottom").value);
-  var selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');
+  var selectedOption = document.getElementById("voice_selection").selectedOptions[0].getAttribute('data-name');
   for(var i = 0; i < voices.length ; i++) {
     if(voices[i].name === selectedOption) {
       top.voice = voices[i];
@@ -87,7 +91,6 @@ inputForm.onsubmit = function(event) {
     }
   }
   // adjust volumn 
-  const readtxt = document.querySelector("[type='button']");
   var loud = document.querySelector('input[type="range"]').value;
   readtxt.addEventListener('click', () => {
     top.volume = loud;
