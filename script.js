@@ -8,37 +8,26 @@ const selection = document.getElementById("voice-selection");
 const range = document.querySelector('input[type="range"]');  // volumn
 
 const ctx = canvas.getContext('2d');
-ctx.clearRect(0, 0, canvas.width, canvas.height);   // clear canvas
-//ctx.fillStyle = 'black';
-//ctx.fillRect(0, 0, canvas.width, canvas.height);    // fill canvas with black
 selection.disabled = false;
+
 // Fires whenever the img object loads a new image (such as with img.src =)
-
-img.addEventListener('change',
-    function (event) {
-        alert(event.target.files[0].name);
-    }
-);
-
-img.addEventListener('load', (e) => {
-  // TODO 
-  alert("hello");
-  //ctx.clearRect(0, 0, canvas.width, canvas.height);   // clear canvas
-  //ctx.fillStyle = 'black';
-  //ctx.fillRect(0, 0, canvas.width, canvas.height);    // fill canvas with black
-  //document.getElementById("generate-meme").reset();   // clear the form
+img.addEventListener('load', function (event) {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);   // clear canvas
+  ctx.fillStyle = 'black';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);    // fill canvas with black
+  document.getElementById("generate-meme").reset();   // clear the form
   //draw image with proper dimension
-  ctx.drawImage(img, 200, 200);
-
-  //let imgdata = getDimmensions(canvas.width, canvas.height, img.clientWidth, img.clientHeight);
-  //ctx.drawImage(img, imgdata.startX, imgdata.startY, imgdata.width, imgdata.height);
-  // Some helpful tips:
-  // - Fill the whole Canvas with black first to add borders on non-square images, then draw on top
-  // - Clear the form when a new image is selected
-  // - If you draw the image to canvas here, it will update as soon as a new image is selected
+  img.src = URL.createObjectURL(event.target.files[0]);
+  let imgdata = getDimmensions(canvas.width, canvas.height, img.clientWidth, img.clientHeight);
+  ctx.drawImage(img, imgdata.startX, imgdata.startY, imgdata.width, imgdata.height);
 });
 
-img.src = URL.createObjectURL(e.target.files[0]);
+// change img
+img.addEventListener('change', function (event) { 
+  img.src = URL.createObjectURL(event.target.files[0]);
+  img.alt = event.target.files[0].name;   // change alt name
+});
+
 // submit button
 submit.addEventListener('click', () => {
   ctx.textAlign = "center";
