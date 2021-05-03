@@ -1,16 +1,17 @@
 // script.js
 const img = new Image(); // used to load image from <input> and draw to canvas
-const file = document.getElementById("image-input").files[0];
+const file = document.getElementById("image-input");
 const canvas = document.getElementById("user-image");
 const ctx = canvas.getContext('2d');
 // Fires whenever the img object loads a new image (such as with img.src =)
-img.addEventListener('load', () => {
+img.addEventListener('load', (e) => {
   // TODO 
   ctx.clearRect(0, 0, canvas.width, canvas.height);   // clear canvas
   ctx.fillStyle = 'black';
   ctx.fillRect(0, 0, canvas.width, canvas.height);    // fill canvas with black
   document.getElementById("generate-meme").reset();   // clear the form
   //draw image with proper dimension
+  img.src = URL.createObjectURL(e.target.files[0]);
   let imgdata = getDimmensions(canvas.width, canvas.height, img.clientWidth, img.clientHeight);
   ctx.drawImage(img, imgdata.startX, imgdata.startY, imgdata.width, imgdata.height);
   // Some helpful tips:
@@ -18,13 +19,11 @@ img.addEventListener('load', () => {
   // - Clear the form when a new image is selected
   // - If you draw the image to canvas here, it will update as soon as a new image is selected
 });
-img.src = URL.createObjectURL(e.target.files[0]);
+
 // change image
-const inputImg = document.getElementById("image-input");
-inputImg.addEventListener("change", handleFiles, false);
-function handleFiles() {
-  img.src = document.getElementById("image-input").value;
-}
+img.addEventListener('change', (e) => {
+  img.src = URL.createObjectURL(e.target.files[0]);
+});
 // submit button
 const submit = document.querySelector("[type='submit']");
 submit.addEventListener('click', () => {
@@ -32,11 +31,21 @@ submit.addEventListener('click', () => {
   ctx.fillText(document.getElementById("text-top"));
   ctx.fillText(document.getElementById("text-bottom"));
   submit.disabled = true;
+  reset.disabled = false;
+  readtxt.disabled = false;
 });
 // reset button
 const reset = document.querySelector("[type='reset']");
-reset.disabled = false;
 reset.addEventListener('click', () => {
+  ctx.clearRect(0, 0, canvas.width, canvas.height); 
+  submit.disabled = false;
+  reset.disabled = true;
+  readtxt.disabled = true;
+});
+// read text button
+const readtxt = document.querySelector("[type='button']");
+
+readtxt.addEventListener('click', () => {
   document.getElementById3("generate-meme").reset();
 });
 /**
